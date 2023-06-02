@@ -19,7 +19,9 @@ document.addEventListener("keydown", event => {
   sequence.timeout = window.setTimeout(() => {
     sequence.history = []
   }, 1200)
-  sequence.history.push(event.key)
+  sequence.history.push(event.key.toLowerCase())
+  
+  if (event.altKey || event.controlKey || event.metaKey || event.shiftKey) return sequence.history = []
   
   sequence.registry.forEach(seq => {
     if (seq.keys.every(v => sequence.history.includes(v.toLowerCase()))) {
